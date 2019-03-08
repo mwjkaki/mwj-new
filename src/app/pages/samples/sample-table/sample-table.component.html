@@ -1,0 +1,140 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title color="warn">検索条件</mat-panel-title>　　
+  </mat-expansion-panel-header>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <mat-select placeholder="倉庫" [formControl]="soukoCtrl" required>
+          <mat-option *ngFor="let soko of souko" [value]="soko.value">
+            {{ soko.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="soukoCtrl.hasError('required')">倉庫選択必須！</mat-error>
+      </mat-form-field>
+      <a mat-raised-button href="#" color="primary">表示</a>
+    </mat-card-content>
+    <p>
+      <mat-form-field class="full-width">
+        <mat-label>日付(単一/下限)</mat-label>
+        <input name="mindate" type="text" matInput [matDatepicker]="minDatePicker" required>
+        <!-- <mat-error *ngIf="mindate.invalid && mindate.errors.required">
+        日付入力必須！
+      </mat-error> -->
+      <mat-datepicker-toggle matSuffix [for]="minDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #minDatePicker></mat-datepicker>
+    </mat-form-field>
+    ～
+    <mat-form-field>
+      <mat-label>日付(上限)</mat-label>
+      <input name="maxdate" type="text"  matInput [matDatepicker]="maxDatePicker">
+      <mat-datepicker-toggle matSuffix [for]="maxDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #maxDatePicker></mat-datepicker>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="full-width">
+      <input
+      name="username"
+      type="text" matInput placeholder="商品コード(単一/下限)" required>
+      <mat-hint>商品名を表示</mat-hint>
+      <!-- <mat-error *ngIf="username.invalid && username.errors.required">
+      商品コード入力必須！
+    </mat-error> -->
+  </mat-form-field>
+  ～
+  <mat-form-field>
+    <mat-label>商品コード(上限)</mat-label>
+    <input matInput>
+    <mat-hint>商品名を表示</mat-hint>
+  </mat-form-field>
+</p>
+</mat-card>
+
+
+</mat-expansion-panel>
+<p></p>
+<mat-expansion-panel>
+  <mat-expansion-panel-header collapsedHeight="120px">
+    <div fxLayout="row" fxLayoutAlign="start stretch">
+        <mat-form-field fxFlex>
+          <input matInput value="NG23-L-WH" placeholder="商品" readonly="true">
+          <mat-hint>スーパー拳サポ L 白</mat-hint>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput value="100" placeholder="フリー在庫" readonly="true">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput value="5" placeholder="在庫引当" readonly="true">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput value="20" placeholder="特殊在庫" readonly="true">
+        </mat-form-field>
+        <!-- <div fxFlex>
+          <button style="pointer-events:none;" mat-raised-button (click)="openDialog()">内訳</button>
+        </div> -->
+        <mat-form-field fxFlex>
+          <input matInput value="2018/03/31" placeholder="最短入荷日" readonly="true">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput value="100" placeholder="最短入荷数" readonly="true">
+        </mat-form-field>
+    </div>
+  </mat-expansion-panel-header>
+  <div class="mat-elevation-z8">
+    <mat-table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="sdate">
+        <mat-header-cell *matHeaderCellDef> 日付 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.sdate}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="kbn">
+        <mat-header-cell *matHeaderCellDef> 区分 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.kbn}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="denno">
+        <mat-header-cell *matHeaderCellDef> 伝票番号 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.denno}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="mcode">
+        <mat-header-cell *matHeaderCellDef> コード </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.mcode}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="mname">
+        <mat-header-cell *matHeaderCellDef> 名称 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.mname}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="insuu">
+        <mat-header-cell *matHeaderCellDef> 入荷数 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.insuu}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="outsu">
+        <mat-header-cell *matHeaderCellDef> 出荷数 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.outsu}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="zaiko">
+        <mat-header-cell *matHeaderCellDef> 在庫数 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.zaiko}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="bikou">
+        <mat-header-cell *matHeaderCellDef> 備考 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.bikou}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+    [length]="dataSource.data.length"
+    [pageIndex]="0"
+    [pageSize]="50"
+    [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+
+</div>
+</mat-expansion-panel>
