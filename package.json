@@ -2,8 +2,8 @@
   "name": "mwjnew",
   "version": "0.0.0",
   "engines": {
-      "node": "10.11.0",
-      "npm": "6.9.0"
+    "node": "10.11.0",
+    "npm": "6.9.0"
   },
   "scripts": {
     "ng": "ng",
@@ -17,14 +17,14 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "~0.13.0",
     "@angular/animations": "~7.2.0",
     "@angular/cdk": "^7.3.2",
     "@angular/cli": "~7.3.2",
-    "@angular/compiler-cli": "^7.2.6",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
+    "@angular/compiler-cli": "^7.2.6",
     "@angular/core": "~7.2.0",
-    "@angular-devkit/build-angular": "~0.13.0",
     "@angular/flex-layout": "^7.0.0-beta.23",
     "@angular/forms": "~7.2.0",
     "@angular/language-service": "~7.2.0",
@@ -34,7 +34,7 @@
     "@angular/pwa": "^0.12.4",
     "@angular/router": "~7.2.0",
     "@angular/service-worker": "~7.2.0",
-    "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0",
+    "@ng-bootstrap/ng-bootstrap": "^2.2.2",
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "angular-web-storage": "^4.1.0",
     "bootstrap": "^4.0.0",
